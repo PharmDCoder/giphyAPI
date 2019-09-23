@@ -33,6 +33,7 @@ $(document).ready(function () {
     //Initial array of emotions
     var emotionsArray = ["ecstatic", "disappointed", "depressed", "anxious", "funky", "saucy", "amazing", "drop the mic"];
 
+    var gifImage;
 
     renderButtons();
 
@@ -63,7 +64,7 @@ $(document).ready(function () {
             var gifDiv = $("<div class='card col-3'>");
 
             // Creating an image tag
-            var gifImage = $("<img class='card-image-top'>");
+            gifImage = $("<img class='card-image-top' status='paused'>");
 
             // Giving the image tag an src attribute of a proprty pulled off the
             // result item
@@ -129,5 +130,19 @@ $(document).ready(function () {
     $(document).on("click", ".emotion-btn", displayGif);
 
   });
+  console.log("imag.attr " + $("img".attr("status")));
+  //This function will unpause the gifs
+  // $(document.body).on("click", "img", function () {
+  //   if ($("img".attr("status")) === "paused") {
+  //     console.log($("img".attr("status")));
+  //     gifImage.attr("src", results[i].images.fixed_width.url);
+  //     $(".card-image-top".attr("status", "animated"));
+  //   } else {
+  //     gifImage.attr("src", results[i].images.fixed_width_still.url);
+  //     $(".card-image-top".attr("status", "paused"));
+  //   }
+
+    
+  // });
 
 });
