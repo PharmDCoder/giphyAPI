@@ -8,33 +8,13 @@ $(document).ready(function () {
       $("#startScreen").hide();
     }, 2000);
 
-    // var introPlayed = false;
-
-    // //play audio instructions on page load
-    // $(document).on("mousemove", function () {
-    //   if (!introPlayed) {
-    //     var promise = document.querySelector('audio').play();
-
-    //     if (promise !== undefined) {
-    //       promise.then(_ => {
-    //         // Autoplay started!
-    //         introPlayed = true;
-    //       }).catch(error => {
-    //         console.log("prevented: " + error);
-    //         // Autoplay was prevented.
-    //         // Show a "Play" button so that user can start playback.
-    //       });
-    //     }
-
-
-    //   }
-    // });
-
     //Initial array of emotions
     var emotionsArray = ["ecstatic", "disappointed", "depressed", "anxious", "funky", "saucy", "amazing", "drop the mic"];
 
+    //declaring gifImage variable globally
     var gifImage;
 
+    //creating the buttons
     renderButtons();
 
     // Event listener for all button elements
@@ -43,7 +23,7 @@ $(document).ready(function () {
       // In this case, the "this" keyword refers to the button that was clicked
       var emotion = $(this).attr("data-emotion");
 
-      // Constructing a URL to search Giphy for the name of the person who said the quote
+      // Constructing a URL to search Giphy for the emotion
       var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
         emotion + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=8";
 
@@ -69,6 +49,10 @@ $(document).ready(function () {
             // Giving the image tag an src attribute of a proprty pulled off the
             // result item
             gifImage.attr("src", results[i].images.fixed_width_still.url);
+
+            //setting up atributes to pair with image sources
+            gifImage.attr("paused", results[i].images.fixed_width_still.url);
+            gifImage.attr("animated", results[i].images.fixed_width.url);
 
             //Creating a card body div w/ bootstrap class
             var cardBody = $("<div class='card-body'>");
@@ -130,19 +114,16 @@ $(document).ready(function () {
     $(document).on("click", ".emotion-btn", displayGif);
 
   });
-  console.log("imag.attr " + $("img".attr("status")));
-  //This function will unpause the gifs
-  // $(document.body).on("click", "img", function () {
-  //   if ($("img".attr("status")) === "paused") {
-  //     console.log($("img".attr("status")));
-  //     gifImage.attr("src", results[i].images.fixed_width.url);
-  //     $(".card-image-top".attr("status", "animated"));
-  //   } else {
-  //     gifImage.attr("src", results[i].images.fixed_width_still.url);
-  //     $(".card-image-top".attr("status", "paused"));
-  //   }
 
-    
-  // });
+  // This function will pause and unpause the gifs
+  $(document.body).on("click", "img", function () {
+    if ($(this).attr("status") === "paused") {
+      $(this).attr("src", $(this).attr("animated"));
+      $(this).attr("status", "animated");
+    } else {
+      $(this).attr("src", $(this).attr("paused"));
+      $(this).attr("status", "paused");
+    }   
+  });
 
 });
