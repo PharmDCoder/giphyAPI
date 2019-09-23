@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/style.css">
+    <title>Giphy API HW</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div id="startScreen" class="row">
+            <div class="col-12">
+                <div class="row justify-content-center">
+                    <img id="couch" src="assets/images/shrinkCouch.png" class="col-4 text-center">
+                </div>
+                <div class="row">
+                    <h1 class="col-12 text-center">Hello. Welcome to Image Emotion Therapy</h1>
+                </div>
+                <br />
+                <div class="row justify-content-center">
+                    <button id="startBtn" class="text-center btn-secondary btn-lg">Start</button>
+                </div>
+            </div>
+        </div>
+        <div id="session" class="row text-center align-middle">
+            <div class="col-12">
+                <div class="row justify-content-center">
+                    <h1>Tell me how you feel.</h1>
+                </div>
+                <br />
+                <div class="row justify-content-center">
+                    <button id="buttons-appear-here"></button>
+                </div>
+                <br />
+                <div class="row justify-content-center">
+                    <form id="emotion-form">
+                        <label for="emotion-input">If you feel something else type it here:</label>
+                        <input type="text" id="emotion-input">
+                        <br />
+
+                        <!--button triggers new movie to be added-->
+                        <input id="add-emotion" type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div id="gifs-appear-here" class="row mx-auto"></div>
+
+
+    </div>
+
+    <audio src="assets/audio/instructions.mp3" type="audio/mp3" id="instructionsAudio">
+    </audio>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="assets/giphy.js"></script>
+
+</body>
+
+</html>
